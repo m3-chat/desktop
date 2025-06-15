@@ -6,6 +6,9 @@ on:
       - "v*.*.*"
       - "test-v*.*.*"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build for ${{ matrix.platform }}
@@ -64,7 +67,6 @@ jobs:
           body: ${{ contains(github.ref_name, 'test-') && '⚠️ This is a test release.' || '✅ Stable production release.' }}
           files: |
             release/**/**/*.dmg
-            release/**/**/*.app
             release/**/**/*.msi
             release/**/**/*.exe
         env:
